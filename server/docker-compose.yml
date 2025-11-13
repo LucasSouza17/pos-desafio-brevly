@@ -1,0 +1,34 @@
+name: "brevly"
+
+services:
+  pg: 
+    image: bitnami/postgresql:latest
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=$DATABASE_USER
+      - POSTGRES_PASSWORD=$DATABASE_PASSWORD
+      - POSTGRES_DB=$DATABASE_NAME
+    volumes:
+      - './docker:/docker-entrypoint-initdb.d'
+  
+  brevly-server:
+    container_name: "brevly-server-app"
+    restart: unless-stopped
+    depends_on:
+      - pg
+    build: .
+    ports: 
+      - 3333:3333
+    environment:
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_HOST=pg
+      - DATABASE_PORT=5432    
+      - CLOUDFARE_ACCOUNT_ID=$CLOUDFARE_ACCOUNT_ID
+      - CLOUDFARE_ACCESS_KEY_ID=$CLOUDFARE_ACCESS_KEY_ID
+      - CLOUDFARE_SECRET_ACCESS_KEY=$CLOUDFARE_SECRET_ACCESS_KEY
+      - CLOUDFARE_BUCKET=$CLOUDFARE_BUCKET
+      - CLOUDFARE_PUBLIC_URL=$CLOUDFARE_PUBLIC_URL
