@@ -66,14 +66,12 @@
     font-family: var(--font-sans);
     font-size: var(--display-md-size);
     line-height: var(--display-md-line);
-    font-weight: var(--display-md-weight);
   }
 
   .text-display-sm {
     font-family: var(--font-sans);
     font-size: var(--display-sm-size);
     line-height: var(--display-sm-line);
-    font-weight: var(--display-sm-weight);
   }
 
   .text-display-xs {
