@@ -16,10 +16,10 @@ const buttonVariants = tv({
       secondary: "bg-gray-200 text-gray-500 border border-gray-200 hover:border-blue-base"
     },
     size: {
-      default: "px-6 py-3 h-12 font-medium text-display-md rounded-lg",
-      md: "px-3 h-8 rounded-sm text-display-sm font-semibold",
-      icon: "p-3",
-      "icon-sm": "p-2",
+      default: "px-6 py-3 h-12 font-medium text-md rounded-lg",
+      md: "px-3 h-8 rounded-sm text-md font-semibold",
+      icon: "p-3 rounded-sm",
+      "icon-sm": "p-2 rounded-sm",
     },
   },
 
