@@ -10,7 +10,7 @@ import { SpinnerIcon } from "@phosphor-icons/react";
 
 export const newLinkForm = z.object({
   fullUrl: z.url({ error: 'A url não é válida.' }).min(1, "A URL é obrigatória."),
-  slug: z.string().min(1, "O Link encurtado é obrigatório.").regex(/^[a-zA-Z0-9-_]+$/, "O Link encurtado só pode conter letras, números, hífens e underscores."),
+  slug: z.string().min(1, "O Link encurtado é obrigatório.").regex(/^[a-zA-Z0-9_]+$/, "O Link encurtado só pode conter letras, números e underscore.")
 })
 
 type NewLinkForm = z.infer<typeof newLinkForm>
@@ -18,20 +18,30 @@ type NewLinkForm = z.infer<typeof newLinkForm>
 export function NewLinkForm() {
   const queryClient = getQueryClient();
 
-  const { mutateAsync: createShortUrlAsync } = useMutation({
-    mutationFn: createShortUrl,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['urls'] });
-    }
-  })
-
-  const { register, watch, formState: { isSubmitting, errors }, handleSubmit } = useForm<NewLinkForm>({
+  const { register, watch, resetField, reset, formState: { isSubmitting, errors }, handleSubmit } = useForm<NewLinkForm>({
     defaultValues: {
       fullUrl: '',
       slug: '',
     },
     mode: "onBlur",
     resolver: zodResolver(newLinkForm),
+  })
+
+  const { mutateAsync: createShortUrlAsync } = useMutation({
+    mutationFn: async (data: NewLinkForm) => {
+      const response = await createShortUrl(data);
+
+      if (response.status === 400) {
+        resetField('slug');
+        return alert('Já existe um link encurtado com esse nome. Tente outro.');
+      }
+
+      return response;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['urls'] });
+      reset();
+    }
   })
 
   async function onSubmit(data: NewLinkForm) {

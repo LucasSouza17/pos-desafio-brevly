@@ -6,7 +6,5 @@ interface CreateShortUrlRequest {
 }
 
 export async function createShortUrl({ slug, fullUrl }: CreateShortUrlRequest) {
-  await api.post(`/urls`, { slug, fullUrl });
-
-  return;
+  return await api.post(`/urls`, { slug, fullUrl });
 }

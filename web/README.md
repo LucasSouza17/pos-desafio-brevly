@@ -2,9 +2,9 @@
 
 Assim como na API, temos as seguintes funcionalidades e regras:
 
-- [ ]  Deve ser possível criar um link
-    - [ ]  Não deve ser possível criar um link com encurtamento mal formatado
-    - [ ]  Não deve ser possível criar um link com encurtamento já existente
+- [x]  Deve ser possível criar um link
+    - [x]  Não deve ser possível criar um link com encurtamento mal formatado
+    - [x]  Não deve ser possível criar um link com encurtamento já existente
 - [x]  Deve ser possível deletar um link
 - [x]  Deve ser possível obter a URL original por meio do encurtamento
 - [x]  Deve ser possível listar todas as URL’s cadastradas
