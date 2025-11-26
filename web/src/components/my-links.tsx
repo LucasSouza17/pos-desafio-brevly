@@ -1,10 +1,8 @@
-import { DownloadSimple } from '@phosphor-icons/react'
-import { MyLinksItem } from "./my-links-item";
+import { DownloadSimpleIcon as DownloadSimple } from '@phosphor-icons/react'
 import { Button } from "./ui/button";
+import { MyLinksList } from './my-links-list';
 
 export function MyLinks() {
-  const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
   return (
     <div className="flex flex-col w-full p-8 max-h-96 bg-gray-100 rounded-lg lg:max-h-3/4">
 
@@ -16,11 +14,7 @@ export function MyLinks() {
         </Button>
       </div>
 
-      <div className="mt-4 overflow-auto">
-        {array.map(item => (
-          <MyLinksItem key={item} />
-        ))}
-      </div>
+      <MyLinksList />
     </div>
   )
 }
