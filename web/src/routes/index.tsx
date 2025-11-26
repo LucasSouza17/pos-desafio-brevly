@@ -1,5 +1,4 @@
 import { createFileRoute } from '@tanstack/react-router'
-import LogoBrevly from '../../public/logo.svg'
 import { MyLinks } from '../components/my-links'
 import { NewLink } from '../components/new-link'
 
@@ -11,7 +10,7 @@ export function App() {
   return (
     <div className="w-screen mx-auto px-3 flex-col h-screen max-w-5xl">
       <div className='w-full flex justify-center lg:justify-start'>
-        <img src={LogoBrevly} className='h-6 mt-6' />
+        <img src='logo.svg' className='h-6 mt-6' />
       </div>
 
       <div className='w-full flex flex-col gap-3 lg:flex-row mt-6'>

@@ -1,5 +1,4 @@
 import { useParams } from '@tanstack/react-router'
-import LogoIcon from '../../public/logo_icon.svg'
 import { getFullUrl } from '../http/get-full-url'
 import { useEffect } from 'react'
 import { incrementAccess } from '../http/increment-access'
@@ -25,7 +24,7 @@ export function Redirect() {
   return (
     <div className="w-screen h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-[580px] flex items-center gap-6 flex-col bg-gray-100 rounded-lg px-12 py-16 text-center">
-        <img src={LogoIcon} alt="404-image" className='h-20' />
+        <img src='logo_icon.svg' alt="404-image" className='h-20' />
 
         <p className='title'>Redirecionando...</p>
 
