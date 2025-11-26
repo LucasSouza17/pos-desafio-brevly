@@ -1,7 +1,7 @@
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import z from 'zod'
 import { getFullUrlByShortUrl } from '@/app/functions/get-full-url-by-short-url'
-import { unwrapEither } from '@/shared/either'
+import { isLeft, isRight, unwrapEither } from '@/shared/either'
 
 export const getFullUrlByShortUrlRoute: FastifyPluginAsyncZod = async server => {
   server.get(
@@ -17,6 +17,9 @@ export const getFullUrlByShortUrlRoute: FastifyPluginAsyncZod = async server => 
           200: z.object({
             fullUrl: z.string(),
           }),
+          404: z.object({
+            message: z.string(),
+          }),
         },
       },
     },
@@ -25,9 +28,19 @@ export const getFullUrlByShortUrlRoute: FastifyPluginAsyncZod = async server => 
 
       const result = await getFullUrlByShortUrl({ shortUrl })
 
-      const { fullUrl } = unwrapEither(result)
+      if (isLeft(result)) {
+        const { type, message } = result.left
 
-      return reply.status(200).send({ fullUrl })
+        if (type === 'NOT_FOUND') {
+          return reply.status(404).send({ message })
+        }
+      }
+
+      if (isRight(result)) {
+        const { fullUrl } = result.right
+
+        return reply.status(200).send({ fullUrl })
+      }
     }
   )
 }

@@ -12,8 +12,10 @@ export function Redirect() {
 
     if (response.fullUrl) {
       await incrementAccess({ slug });
-      window.location.href = response.fullUrl
+      return window.location.href = response.fullUrl
     }
+
+    return window.location.href = '/not-found'
   }
 
   useEffect(() => {
