@@ -27,9 +27,9 @@ export function MyLinksList() {
   }
 
   return (
-    <div className="mt-4 overflow-auto">
+    <div className="flex flex-col">
       {urls.map(item => (
-        <MyLinksItem key={item.id} {...item} />
+        <MyLinksItem {...item} />
       ))}
     </div>
   )

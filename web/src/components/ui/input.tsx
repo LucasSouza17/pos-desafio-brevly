@@ -1,5 +1,6 @@
 import type * as React from "react"
 import { cn } from "../../utils/tailwindcss-cn"
+import { WarningIcon } from "@phosphor-icons/react"
 
 export type InputFieldProps = Omit<React.ComponentProps<"input">, "prefix"> & {
   label?: string
@@ -45,8 +46,8 @@ export function InputField({ label, error, prefix, className, ...props }: InputF
 
       {error && (
         <div className="flex items-center gap-1.5 text-xs text-danger">
-          {/* <AlertCircle className="w-4 h-4" /> */}
-          <span>{error}</span>
+          <WarningIcon className="w-4 h-4 text-danger" />
+          <span className="text-gray-500">{error}</span>
         </div>
       )}
     </div>

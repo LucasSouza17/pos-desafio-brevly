@@ -9,9 +9,9 @@ export const Route = createFileRoute('/')({
 
 export function App() {
   return (
-    <div className="w-screen mx-auto px-3 flex-col h-screen max-w-5xl overflow-hidden">
+    <div className="w-screen mx-auto px-3 flex-col h-screen max-w-5xl">
       <div className='w-full flex justify-center lg:justify-start'>
-        <img src={LogoBrevly} className='h-[24px] mt-6' />
+        <img src={LogoBrevly} className='h-6 mt-6' />
       </div>
 
       <div className='w-full flex flex-col gap-3 lg:flex-row mt-6'>
