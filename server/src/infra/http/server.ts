@@ -32,7 +32,7 @@ server.setErrorHandler((error, _, reply) => {
 })
 
 // Registra plugins
-server.register(fastifyCors, { origin: '*' })
+server.register(fastifyCors, { origin: '*', methods: ['GET', 'POST', 'DELETE'] })
 server.register(fastifySwagger, {
   openapi: {
     openapi: '3.1.0',

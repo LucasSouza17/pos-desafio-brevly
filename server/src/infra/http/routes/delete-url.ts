@@ -13,7 +13,7 @@ export const deleteUrlRoute: FastifyPluginAsyncZod = async server => {
           shortUrl: z.string(),
         }),
         response: {
-          201: z.null(),
+          204: z.null(),
         },
       },
     },
@@ -22,7 +22,7 @@ export const deleteUrlRoute: FastifyPluginAsyncZod = async server => {
 
       await deleteUrl({ shortUrl })
 
-      return reply.status(201).send()
+      return reply.status(204).send()
     }
   )
 }
